@@ -8,7 +8,13 @@
 
 #import "RequestResponseScheme.h"
 @implementation RequestResponseScheme
-
+/**
+ *  <#Description#>
+ *
+ *  @param data <#data description#>
+ *
+ *  @return <#return value description#>
+ */
 
 +(NSString *)responseURL:(NSDictionary *)data
 {

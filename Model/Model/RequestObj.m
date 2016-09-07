@@ -9,7 +9,4 @@
 #import "RequestObj.h"
 @implementation RequestObj
 
-/**
- *  908
- */
 @end

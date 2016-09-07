@@ -10,6 +10,13 @@
 @implementation RequestObj
 
 /**
+<<<<<<< HEAD
 est
+=======
+ *  qqqq
+ dddd
+ 1234
+ 5678
+>>>>>>> test
  */
 @end

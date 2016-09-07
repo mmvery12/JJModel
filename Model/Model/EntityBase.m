@@ -19,6 +19,8 @@
 
 @implementation EntityBase
 
+
+
 - (instancetype)init
 {
     self = [super init];

@@ -17,6 +17,9 @@
 @property (nonatomic,retain)NSDictionary *arrayContainObjIsEntyBaseObjNeedToEncodeDict;
 @end
 
+
+
+
 @implementation EntityBase
 
 

@@ -107,7 +107,7 @@
                         [[self containerArrayConvertToEntityPropertyArray] objectForKey:key]) {//entitybase类集合
                         NSMutableArray *arr = [NSMutableArray array];
                         for (id data in propertyValue) {
-                            [arr addObject:(id)[NSClassFromString(className) EntityFromContainer:data]];
+                            [arr addObject:(id)[NSClassFromString([[self containerArrayConvertToEntityPropertyArray] objectForKey:key]) EntityFromContainer:data]];
                         }
                         [self setValue:arr forKey:key];
                     }

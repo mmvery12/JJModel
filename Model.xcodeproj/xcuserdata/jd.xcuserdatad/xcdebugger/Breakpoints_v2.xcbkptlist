@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Model/Model/NSObject+Entity.m"
-            timestampString = "506517368.658934"
+            timestampString = "506517766.949555"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "112"
+            endingLineNumber = "112"
             landmarkName = "-autoPaddingParamsValues:"
             landmarkType = "7">
          </BreakpointContent>

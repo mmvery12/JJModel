@@ -9,5 +9,6 @@
 #import "CustomerRequestBase.h"
 
 @interface IRole_Request : CustomerRequestBase
-
+@property (nonatomic,strong)NSMutableArray *a;
+@property (nonatomic,strong)NSArray *b;
 @end

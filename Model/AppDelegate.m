@@ -7,7 +7,8 @@
 //
 
 #import "AppDelegate.h"
-
+#import "IUser_Request.h"
+#import "NSObject+Entity.h"
 @interface AppDelegate ()
 
 @end
@@ -180,6 +181,19 @@
 //        };
 //    }
 
+    IUser_Request *req = [IUser_Request EntityFromContainer:@{@"a":@(1),
+                                                              @"array":@[@{
+                                                                             @"a":@[@"a1",@"a2"],
+                                                                             @"b":@[@"b1",@"b2"]
+                                                                             },
+                                                                         @{
+                                                                             @"a":@[@"a1",@"a2"],
+                                                                             @"b":@[@"b1",@"b2"]
+                                                                             }],
+                                                              @"role":@{
+                                                                      @"a":@[@"a1",@"a2"],
+                                                                      @"b":@[@"b1",@"b2"]
+                                                                      }}];
     return YES;
 }
 

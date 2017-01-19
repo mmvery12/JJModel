@@ -14,16 +14,10 @@
 		20FDBFB11B7856BF008B4A38 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 20FDBFB01B7856BF008B4A38 /* Images.xcassets */; };
 		20FDBFB41B7856BF008B4A38 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 20FDBFB21B7856BF008B4A38 /* LaunchScreen.xib */; };
 		20FDBFC01B7856BF008B4A38 /* ModelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FDBFBF1B7856BF008B4A38 /* ModelTests.m */; };
-		20FDBFD31B7856D6008B4A38 /* EntityBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FDBFCB1B7856D6008B4A38 /* EntityBase.m */; };
-		20FDBFD41B7856D6008B4A38 /* RequestObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FDBFCE1B7856D6008B4A38 /* RequestObj.m */; };
-		20FDBFD51B7856D6008B4A38 /* RequestResponseScheme.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FDBFD01B7856D6008B4A38 /* RequestResponseScheme.m */; };
-		20FDBFD61B7856D6008B4A38 /* ResponseObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FDBFD21B7856D6008B4A38 /* ResponseObj.m */; };
 		20FDBFD91B78570F008B4A38 /* CustomerRequestBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FDBFD81B78570F008B4A38 /* CustomerRequestBase.m */; };
 		20FDBFDC1B785729008B4A38 /* IUser_Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FDBFDB1B785729008B4A38 /* IUser_Request.m */; };
 		20FDBFE21B785769008B4A38 /* IRole_Request.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FDBFE11B785769008B4A38 /* IRole_Request.m */; };
-		20FDBFE81B7857E2008B4A38 /* CustomerResponseBase.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FDBFE71B7857E2008B4A38 /* CustomerResponseBase.m */; };
-		20FDBFEB1B7857F8008B4A38 /* IUser_Response.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FDBFEA1B7857F8008B4A38 /* IUser_Response.m */; };
-		20FDBFEE1B785807008B4A38 /* IRole_Response.m in Sources */ = {isa = PBXBuildFile; fileRef = 20FDBFED1B785807008B4A38 /* IRole_Response.m */; };
+		691EEF8C1E30B0DC00F195C6 /* NSObject+Entity.m in Sources */ = {isa = PBXBuildFile; fileRef = 691EEF8B1E30B0DC00F195C6 /* NSObject+Entity.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,27 +44,15 @@
 		20FDBFB91B7856BF008B4A38 /* ModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20FDBFBE1B7856BF008B4A38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20FDBFBF1B7856BF008B4A38 /* ModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelTests.m; sourceTree = "<group>"; };
-		20FDBFCA1B7856D6008B4A38 /* EntityBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EntityBase.h; sourceTree = "<group>"; };
-		20FDBFCB1B7856D6008B4A38 /* EntityBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EntityBase.m; sourceTree = "<group>"; };
 		20FDBFCC1B7856D6008B4A38 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
-		20FDBFCD1B7856D6008B4A38 /* RequestObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestObj.h; sourceTree = "<group>"; };
-		20FDBFCE1B7856D6008B4A38 /* RequestObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestObj.m; sourceTree = "<group>"; };
-		20FDBFCF1B7856D6008B4A38 /* RequestResponseScheme.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestResponseScheme.h; sourceTree = "<group>"; };
-		20FDBFD01B7856D6008B4A38 /* RequestResponseScheme.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestResponseScheme.m; sourceTree = "<group>"; };
-		20FDBFD11B7856D6008B4A38 /* ResponseObj.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResponseObj.h; sourceTree = "<group>"; };
-		20FDBFD21B7856D6008B4A38 /* ResponseObj.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResponseObj.m; sourceTree = "<group>"; };
 		20FDBFD71B78570F008B4A38 /* CustomerRequestBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerRequestBase.h; sourceTree = "<group>"; };
 		20FDBFD81B78570F008B4A38 /* CustomerRequestBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerRequestBase.m; sourceTree = "<group>"; };
 		20FDBFDA1B785729008B4A38 /* IUser_Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUser_Request.h; sourceTree = "<group>"; };
 		20FDBFDB1B785729008B4A38 /* IUser_Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUser_Request.m; sourceTree = "<group>"; };
 		20FDBFE01B785769008B4A38 /* IRole_Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRole_Request.h; sourceTree = "<group>"; };
 		20FDBFE11B785769008B4A38 /* IRole_Request.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRole_Request.m; sourceTree = "<group>"; };
-		20FDBFE61B7857E2008B4A38 /* CustomerResponseBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerResponseBase.h; sourceTree = "<group>"; };
-		20FDBFE71B7857E2008B4A38 /* CustomerResponseBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerResponseBase.m; sourceTree = "<group>"; };
-		20FDBFE91B7857F8008B4A38 /* IUser_Response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUser_Response.h; sourceTree = "<group>"; };
-		20FDBFEA1B7857F8008B4A38 /* IUser_Response.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IUser_Response.m; sourceTree = "<group>"; };
-		20FDBFEC1B785807008B4A38 /* IRole_Response.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRole_Response.h; sourceTree = "<group>"; };
-		20FDBFED1B785807008B4A38 /* IRole_Response.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRole_Response.m; sourceTree = "<group>"; };
+		691EEF8A1E30B0DC00F195C6 /* NSObject+Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Entity.h"; sourceTree = "<group>"; };
+		691EEF8B1E30B0DC00F195C6 /* NSObject+Entity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Entity.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,12 +109,6 @@
 				20FDBFDB1B785729008B4A38 /* IUser_Request.m */,
 				20FDBFE01B785769008B4A38 /* IRole_Request.h */,
 				20FDBFE11B785769008B4A38 /* IRole_Request.m */,
-				20FDBFE61B7857E2008B4A38 /* CustomerResponseBase.h */,
-				20FDBFE71B7857E2008B4A38 /* CustomerResponseBase.m */,
-				20FDBFE91B7857F8008B4A38 /* IUser_Response.h */,
-				20FDBFEA1B7857F8008B4A38 /* IUser_Response.m */,
-				20FDBFEC1B785807008B4A38 /* IRole_Response.h */,
-				20FDBFED1B785807008B4A38 /* IRole_Response.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -166,15 +142,9 @@
 		20FDBFC91B7856D6008B4A38 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				20FDBFCA1B7856D6008B4A38 /* EntityBase.h */,
-				20FDBFCB1B7856D6008B4A38 /* EntityBase.m */,
 				20FDBFCC1B7856D6008B4A38 /* Model.h */,
-				20FDBFCD1B7856D6008B4A38 /* RequestObj.h */,
-				20FDBFCE1B7856D6008B4A38 /* RequestObj.m */,
-				20FDBFCF1B7856D6008B4A38 /* RequestResponseScheme.h */,
-				20FDBFD01B7856D6008B4A38 /* RequestResponseScheme.m */,
-				20FDBFD11B7856D6008B4A38 /* ResponseObj.h */,
-				20FDBFD21B7856D6008B4A38 /* ResponseObj.m */,
+				691EEF8A1E30B0DC00F195C6 /* NSObject+Entity.h */,
+				691EEF8B1E30B0DC00F195C6 /* NSObject+Entity.m */,
 			);
 			name = Model;
 			path = Model/Model;
@@ -281,18 +251,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				20FDBFAC1B7856BF008B4A38 /* ViewController.m in Sources */,
-				20FDBFD61B7856D6008B4A38 /* ResponseObj.m in Sources */,
-				20FDBFE81B7857E2008B4A38 /* CustomerResponseBase.m in Sources */,
+				691EEF8C1E30B0DC00F195C6 /* NSObject+Entity.m in Sources */,
 				20FDBFA91B7856BF008B4A38 /* AppDelegate.m in Sources */,
-				20FDBFD41B7856D6008B4A38 /* RequestObj.m in Sources */,
-				20FDBFEE1B785807008B4A38 /* IRole_Response.m in Sources */,
-				20FDBFD51B7856D6008B4A38 /* RequestResponseScheme.m in Sources */,
 				20FDBFA61B7856BF008B4A38 /* main.m in Sources */,
 				20FDBFDC1B785729008B4A38 /* IUser_Request.m in Sources */,
 				20FDBFE21B785769008B4A38 /* IRole_Request.m in Sources */,
-				20FDBFEB1B7857F8008B4A38 /* IUser_Response.m in Sources */,
 				20FDBFD91B78570F008B4A38 /* CustomerRequestBase.m in Sources */,
-				20FDBFD31B7856D6008B4A38 /* EntityBase.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +451,7 @@
 				20FDBFC51B7856BF008B4A38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		20FDBFC61B7856BF008B4A38 /* Build configuration list for PBXNativeTarget "ModelTests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +460,7 @@
 				20FDBFC81B7856BF008B4A38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -6,8 +6,8 @@
 //  Copyright (c) 2015年 liyuchang. All rights reserved.
 //
 
-#import "RequestObj.h"
+#import <Foundation/Foundation.h>
 
-@interface CustomerRequestBase : RequestObj
+@interface CustomerRequestBase : NSObject
 
 @end

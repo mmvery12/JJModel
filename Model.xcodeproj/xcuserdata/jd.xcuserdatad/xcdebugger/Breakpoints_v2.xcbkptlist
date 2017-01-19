@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Model/Model/NSObject+Entity.m"
-            timestampString = "506516694.662294"
+            filePath = "Model/AppDelegate.m"
+            timestampString = "506516739.146137"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "-autoPaddingParamsValues:"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
+            landmarkName = "-application:didFinishLaunchingWithOptions:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -25,13 +25,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Model/AppDelegate.m"
-            timestampString = "506516739.146137"
+            filePath = "Model/Model/NSObject+Entity.m"
+            timestampString = "506517368.658934"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "197"
-            endingLineNumber = "197"
-            landmarkName = "-application:didFinishLaunchingWithOptions:"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "-autoPaddingParamsValues:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -89,14 +89,15 @@
                 NSRange range4 = [attribute rangeOfString:@"NSDictionary"];
                 NSRange range5 = [attribute rangeOfString:@"NSMutableArray"];
                 NSRange range6 = [attribute rangeOfString:@"NSArray"];
-                
+                NSRange range7 = [attribute rangeOfString:@"NSDecimalNumber"];
                 if (![propertyValue isKindOfClass:[NSArray class]] &&
                     range1.location==NSNotFound &&
                     range2.location==NSNotFound &&
                     range3.location==NSNotFound &&
                     range4.location==NSNotFound &&
                     range5.location==NSNotFound &&
-                    range6.location==NSNotFound)//非基本nsobject类,且是entity子类，数据类型不是array
+                    range6.location==NSNotFound &&
+                    range7.location==NSNotFound)//非基本nsobject类,且是entity子类，数据类型不是array,dict
                 {
                     NSObject *base = (id)[NSClassFromString(className) EntityFromContainer:propertyValue];
                     [self setValue:base forKey:key];
@@ -119,7 +120,7 @@
                             obj = [NSDecimalNumber decimalNumberWithString:[propertyValue stringValue]];
                             [self setValue:obj forKey:key];
                         }else
-                            [self setValue:propertyValue forKey:key];
+                            [self setValue:[propertyValue copy] forKey:key];
                     }
                 
             }else
@@ -130,6 +131,8 @@
                 NSRange range3 = [attribute rangeOfString:@"NSDecimalNumber"];
                 NSRange range4 = [attribute rangeOfString:@"NSMutableArray"];
                 NSRange range5 = [attribute rangeOfString:@"NSArray"];
+                NSRange range6 = [attribute rangeOfString:@"NSMutableDictionary"];
+                NSRange range7 = [attribute rangeOfString:@"NSDictionary"];
                 NSString *arrtibutename = nil;
                 if (range1.length>0) {
                     arrtibutename = [attribute substringWithRange: range1];
@@ -151,7 +154,15 @@
                     {
                         arrtibutename = [attribute substringWithRange:range5];
                         obj = [NSMutableArray new];
-                    }else
+                    }else if (range6.length>0)
+                    {
+                        obj = [NSMutableDictionary new];
+                    }
+                    else if (range7.length>0)
+                    {
+                        obj = [NSDictionary new];
+                    }
+                    else
                     {
                         NSObject *base = (id)[[NSClassFromString(className) alloc] init];
                         [self setValue:base forKey:key];

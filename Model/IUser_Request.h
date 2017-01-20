@@ -7,7 +7,12 @@
 //
 
 #import "CustomerRequestBase.h"
-
-@interface IUser_Request : CustomerRequestBase
-
+#import "IRole_Request.h"
+typedef NSDictionary TTDict;
+@interface IUser_Request : NSObject
+@property (nonatomic,assign)NSNumber * a;
+@property (nonatomic,strong)NSMutableDictionary *d2;
+@property (nonatomic,strong)IRole_Request *role;
+@property (nonatomic,strong)IRole_Request *role2;
+@property (nonatomic,strong)NSArray *array;
 @end

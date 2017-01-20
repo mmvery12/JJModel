@@ -9,5 +9,8 @@
 #import "IUser_Request.h"
 
 @implementation IUser_Request
-
+-(NSDictionary *)containerArrayConvertToEntityPropertyArray
+{
+    return @{@"array":[IRole_Request class]};
+}
 @end

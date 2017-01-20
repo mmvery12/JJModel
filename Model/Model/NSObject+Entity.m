@@ -19,7 +19,9 @@ typedef NS_ENUM(NSInteger) {
     NSDictionaryType,
     NSMutableDictionaryType,
     NSDecimalNumberType,
-    NSNumberType
+    NSNumberType,
+    NSDataType,
+    NSMutableDataType
 }PropertyType;
 
 @implementation NSObject (Entity)
@@ -106,6 +108,14 @@ typedef NS_ENUM(NSInteger) {
             else if (type == NSNumberType)
             {
                 obj = [NSNumber new];
+            }
+            else if (type == NSDataType)
+            {
+                obj = [NSData data];
+            }
+            else if (type == NSMutableDataType)
+            {
+                obj = [NSMutableData data];
             }
             
             [temp setValue:obj forKey:key];
@@ -218,7 +228,14 @@ typedef NS_ENUM(NSInteger) {
             {
                 obj = [NSNumber new];
             }
-            
+            else if (type == NSDataType)
+            {
+                obj = [NSData data];
+            }
+            else if (type == NSMutableDataType)
+            {
+                obj = [NSMutableData data];
+            }
             
             [self setValue:obj forKey:key];
         }
@@ -236,7 +253,9 @@ typedef NS_ENUM(NSInteger) {
     NSRange range6 = [attribute rangeOfString:@"NSMutableDictionary"];
     NSRange range7 = [attribute rangeOfString:@"NSDecimalNumber"];
     NSRange range8  =[attribute rangeOfString:@"NSNumber"];
-    return (range8.length?8:0) | (range7.length?7:0) | (range6.length?6:0) | (range5.length?5:0) | (range4.length?4:0) | (range3.length?3:0) | (range2.length?2:0) | (range1.length?1:0);
+    NSRange range9  =[attribute rangeOfString:@"NSData"];
+    NSRange range10  =[attribute rangeOfString:@"NSMutableData"];
+    return (range10.length?10:0) | (range9.length?9:0) | (range8.length?8:0) | (range7.length?7:0) | (range6.length?6:0) | (range5.length?5:0) | (range4.length?4:0) | (range3.length?3:0) | (range2.length?2:0) | (range1.length?1:0);
 }
 
 -(Class)propertyClass:(NSString *)attribute
@@ -299,8 +318,8 @@ static BOOL valied(id obj){
                 return YES;
             }else
                 return NO;
-        else
-            return YES;
+            else
+                return YES;
     }
     return YES;
 }

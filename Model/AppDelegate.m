@@ -194,6 +194,9 @@
                                                                       @"a":@[@"a1",@"a2"],
                                                                       @"b":@[@"b1",@"b2"]
                                                                       }}];
+    NSLog(@"%@",[req getContainer]);
+    NSLog(@"%@ %@ %@",req.a,req.array,req.role.a);
+    
     return YES;
 }
 

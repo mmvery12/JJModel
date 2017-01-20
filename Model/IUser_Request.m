@@ -11,6 +11,6 @@
 @implementation IUser_Request
 -(NSDictionary *)containerArrayConvertToEntityPropertyArray
 {
-    return @{@"array":@"IRole_Request"};
+    return @{@"array":[IRole_Request class]};
 }
 @end

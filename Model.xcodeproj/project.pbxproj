@@ -44,7 +44,6 @@
 		20FDBFB91B7856BF008B4A38 /* ModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		20FDBFBE1B7856BF008B4A38 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		20FDBFBF1B7856BF008B4A38 /* ModelTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelTests.m; sourceTree = "<group>"; };
-		20FDBFCC1B7856D6008B4A38 /* Model.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Model.h; sourceTree = "<group>"; };
 		20FDBFD71B78570F008B4A38 /* CustomerRequestBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomerRequestBase.h; sourceTree = "<group>"; };
 		20FDBFD81B78570F008B4A38 /* CustomerRequestBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomerRequestBase.m; sourceTree = "<group>"; };
 		20FDBFDA1B785729008B4A38 /* IUser_Request.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IUser_Request.h; sourceTree = "<group>"; };
@@ -142,7 +141,6 @@
 		20FDBFC91B7856D6008B4A38 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				20FDBFCC1B7856D6008B4A38 /* Model.h */,
 				691EEF8A1E30B0DC00F195C6 /* NSObject+Entity.h */,
 				691EEF8B1E30B0DC00F195C6 /* NSObject+Entity.m */,
 			);

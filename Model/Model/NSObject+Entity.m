@@ -9,6 +9,19 @@
 #import "NSObject+Entity.h"
 #import <objc/runtime.h>
 
+
+typedef NS_ENUM(NSInteger) {
+    NSEntityType,
+    NSStringType,
+    NSMutableStringType,
+    NSArrayType,
+    NSMutableArrayType,
+    NSDictionaryType,
+    NSMutableDictionaryType,
+    NSDecimalNumberType,
+    NSNumberType
+}PropertyType;
+
 @implementation NSObject (Entity)
 
 
@@ -17,9 +30,9 @@
     if (container==nil||[container isKindOfClass:[NSNull class]]) {
         return nil;
     }
-    NSObject *obj =  [[[self class] alloc] init];
+    id obj =  (id)[[self alloc] init];
     [obj autoPaddingParamsValues:container];
-    return self;
+    return obj;
 }
 
 -(id)getContainer;
@@ -27,18 +40,76 @@
     NSMutableDictionary *temp = [NSMutableDictionary dictionary];
     for (NSDictionary *dict in [self getAllProperties]) {
         NSString *key = [dict objectForKey:@"name"];
+        NSString *attribute = [dict objectForKey:@"attribute"];
+        PropertyType type = [self propertyType:attribute];
+        Class cls = [self propertyClass:attribute];
+        
         SEL getParamSel = NSSelectorFromString(key);
         id obj = [self performSelector:getParamSel];
-        if ([[[obj containerArrayConvertToEntityPropertyArray] allKeys] containsObject:key]) {
-            if ([obj isKindOfClass:[NSArray class]]||[obj isKindOfClass:[NSMutableArray class]]) {
-                NSMutableArray *arr = [NSMutableArray array];
-                for (id temp in obj) {
-                    [arr addObject:[temp getContainer]];
-                }
-                [temp setObject:arr forKey:key];
+        
+        NSDictionary *ArrayPropertyArrayDict = [self containerArrayConvertToEntityPropertyArray];
+        
+        id containerValue = obj;
+        if (valied(containerValue)) {
+            if (type==NSEntityType)//非基本nsobject类,且是entity子类，数据类型不是array,dict
+            {
+                NSObject *base = (id)[obj getContainer];
+                [temp setValue:base forKey:key];
             }
-        }else
-            [temp setObject:[self isVaildRequestObject:obj] forKey:key];
+            else if ((type==NSArrayType|| type==NSMutableArrayType) &&
+                     ArrayPropertyArrayDict[key])
+            {//entitybase类集合
+                NSMutableArray *arr = [NSMutableArray array];
+                for (id data in containerValue) {
+                    [arr addObject:(id)[data getContainer]];
+                }
+                [temp setValue:arr forKey:key];
+            }
+            else    //正常nsobject类
+            {
+                [temp setValue:containerValue forKey:key];
+            }
+        }else if (!valied(containerValue))
+        {
+            NSObject *obj = nil;
+            if (type == NSEntityType)
+            {
+                obj = [[cls alloc] init];
+            }
+            else if (type == NSStringType) {
+                obj = [[NSString  alloc] init];
+            }
+            else if (type == NSMutableStringType)
+            {
+                obj = [NSMutableString new];
+            }
+            else if (type == NSArrayType)
+            {
+                obj = [NSArray new];
+            }
+            else if (type == NSMutableArrayType)
+            {
+                obj = [NSMutableArray new];
+            }
+            else if (type == NSDictionaryType)
+            {
+                obj = [NSDictionary new];
+            }
+            else if (type == NSMutableDictionaryType)
+            {
+                obj = [NSMutableDictionary new];
+            }
+            else if (type == NSDecimalNumberType)
+            {
+                obj = [NSDecimalNumber decimalNumberWithString:@"0"];
+            }
+            else if (type == NSNumberType)
+            {
+                obj = [NSNumber new];
+            }
+            
+            [temp setValue:obj forKey:key];
+        }
     }
     return temp;
 }
@@ -59,12 +130,17 @@
 {
     return @{};
 }
+
 // subclass overwrite
 -(NSDictionary *)containerArrayConvertToEntityPropertyArray;
 {
     return @{};
 }
 
+-(NSArray *)containerKeyValueNullNotConvertToEntityPropertyInit;
+{
+    return @[];
+}
 
 - (BOOL)autoPaddingParamsValues:(NSObject*)dataSource
 {
@@ -72,108 +148,101 @@
     for (NSDictionary *dict in [self getAllProperties]) {
         NSString *key = [dict objectForKey:@"name"];
         NSString *attribute = [dict objectForKey:@"attribute"];
-        if ([dataSource isKindOfClass:[NSDictionary class]]) {
-            ret = ([dataSource valueForKey:key]==nil)?NO:YES;
-        }
-        if ([dataSource isKindOfClass:[NSArray class]]) {
-            ret = YES;
-        }
-        NSString *className = [[[[attribute componentsSeparatedByString:@"T@\""] lastObject] componentsSeparatedByString:@"\""] firstObject];
-        if (ret) {
-            id propertyValue = [dataSource valueForKey:key];
-            if (![propertyValue isKindOfClass:[NSNull class]] && propertyValue!=nil) {
-                
-                NSRange range1 = [attribute rangeOfString:@"NSString"];
-                NSRange range2  =[attribute rangeOfString:@"NSNumber"];
-                NSRange range3 = [attribute rangeOfString:@"NSMutableDictionary"];
-                NSRange range4 = [attribute rangeOfString:@"NSDictionary"];
-                NSRange range5 = [attribute rangeOfString:@"NSMutableArray"];
-                NSRange range6 = [attribute rangeOfString:@"NSArray"];
-                NSRange range7 = [attribute rangeOfString:@"NSDecimalNumber"];
-                if (![propertyValue isKindOfClass:[NSArray class]] &&
-                    range1.location==NSNotFound &&
-                    range2.location==NSNotFound &&
-                    range3.location==NSNotFound &&
-                    range4.location==NSNotFound &&
-                    range5.location==NSNotFound &&
-                    range6.location==NSNotFound &&
-                    range7.location==NSNotFound)//非基本nsobject类,且是entity子类，数据类型不是array,dict
-                {
-                    NSObject *base = (id)[NSClassFromString(className) EntityFromContainer:propertyValue];
-                    [self setValue:base forKey:key];
-                }
-                else
-                    if ([propertyValue isKindOfClass:[NSArray class]] &&
-                        [[self containerArrayConvertToEntityPropertyArray] objectForKey:key]) {//entitybase类集合
-                        NSMutableArray *arr = [NSMutableArray array];
-                        for (id data in propertyValue) {
-                            [arr addObject:(id)[NSClassFromString([[self containerArrayConvertToEntityPropertyArray] objectForKey:key]) EntityFromContainer:data]];
-                        }
-                        [self setValue:arr forKey:key];
-                    }
-                    else//正常nsobject类
-                    {
-                        NSObject *obj = nil;
-                        NSRange range3 = [attribute rangeOfString:@"NSDecimalNumber"];
-                        if (range3.length>0)
-                        {
-                            obj = [NSDecimalNumber decimalNumberWithString:[propertyValue stringValue]];
-                            [self setValue:obj forKey:key];
-                        }else
-                            [self setValue:[propertyValue copy] forKey:key];
-                    }
-                
-            }else
+        PropertyType type = [self propertyType:attribute];
+        Class cls = [self propertyClass:attribute];
+        
+        NSDictionary *KeyNamePropertyNameDict = [self containerKeyNameConvertToEntityPropertyName];
+        NSDictionary *ArrayPropertyArrayDict = [self containerArrayConvertToEntityPropertyArray];
+        NSArray *KeyValueNullNotPropertyInitArray = [self containerKeyValueNullNotConvertToEntityPropertyInit];
+        
+        id containerValue = [dataSource valueForKey:KeyNamePropertyNameDict[key]?:key];
+        if (valied(containerValue)) {
+            if (type==NSEntityType)//非基本nsobject类,且是entity子类，数据类型不是array,dict
             {
-                NSObject *obj = nil;
-                NSRange range1 = [attribute rangeOfString:@"NSString"];
-                NSRange range2  =[attribute rangeOfString:@"NSNumber"];
-                NSRange range3 = [attribute rangeOfString:@"NSDecimalNumber"];
-                NSRange range4 = [attribute rangeOfString:@"NSMutableArray"];
-                NSRange range5 = [attribute rangeOfString:@"NSArray"];
-                NSRange range6 = [attribute rangeOfString:@"NSMutableDictionary"];
-                NSRange range7 = [attribute rangeOfString:@"NSDictionary"];
-                NSString *arrtibutename = nil;
-                if (range1.length>0) {
-                    arrtibutename = [attribute substringWithRange: range1];
-                    obj = [[NSString  alloc] init];
-                }else
-                    if (range2.length>0) {
-                        arrtibutename = [attribute substringWithRange: range2];
-                        obj = [NSNumber numberWithInteger:0];
-                    }else if (range3.length>0)
-                    {
-                        arrtibutename = [attribute substringWithRange: range3];
-                        obj = [NSDecimalNumber decimalNumberWithString:@"0"];
-                    }else if (range4.length>0)
-                    {
-                        arrtibutename = [attribute substringWithRange:range4];
-                        obj = [NSMutableArray new];
-                    }
-                    else if (range5.length>0)
-                    {
-                        arrtibutename = [attribute substringWithRange:range5];
-                        obj = [NSMutableArray new];
-                    }else if (range6.length>0)
-                    {
-                        obj = [NSMutableDictionary new];
-                    }
-                    else if (range7.length>0)
-                    {
-                        obj = [NSDictionary new];
-                    }
-                    else
-                    {
-                        NSObject *base = (id)[[NSClassFromString(className) alloc] init];
-                        [self setValue:base forKey:key];
-                    }
-                if (arrtibutename) {
-                    [self setValue:obj forKey:key];
-                }
+                NSObject *base = (id)[cls EntityFromContainer:containerValue];
+                [self setValue:base forKey:key];
             }
+            else if ((type==NSArrayType|| type==NSMutableArrayType) &&
+                     ArrayPropertyArrayDict[key])
+            {//entitybase类集合
+                NSMutableArray *arr = [NSMutableArray array];
+                for (id data in containerValue) {
+                    [arr addObject:(id)[ArrayPropertyArrayDict[key] EntityFromContainer:data]];
+                }
+                [self setValue:arr forKey:key];
+            }
+            else if (type==NSDecimalNumberType)
+            {
+                NSDecimalNumber * obj = [NSDecimalNumber decimalNumberWithString:[containerValue stringValue]];
+                [self setValue:obj forKey:key];
+            }
+            else    //正常nsobject类
+            {
+                [self setValue:containerValue forKey:key];
+            }
+        }else if (!valied(containerValue) && ![KeyValueNullNotPropertyInitArray containsObject:key])
+        {
+            NSObject *obj = nil;
+            if (type == NSEntityType)
+            {
+                obj = [[cls alloc] init];
+            }
+            else if (type == NSStringType) {
+                obj = [[NSString  alloc] init];
+            }
+            else if (type == NSMutableStringType)
+            {
+                obj = [NSMutableString new];
+            }
+            else if (type == NSArrayType)
+            {
+                obj = [NSArray new];
+            }
+            else if (type == NSMutableArrayType)
+            {
+                obj = [NSMutableArray new];
+            }
+            else if (type == NSDictionaryType)
+            {
+                obj = [NSDictionary new];
+            }
+            else if (type == NSMutableDictionaryType)
+            {
+                obj = [NSMutableDictionary new];
+            }
+            else if (type == NSDecimalNumberType)
+            {
+                obj = [NSDecimalNumber decimalNumberWithString:@"0"];
+            }
+            else if (type == NSNumberType)
+            {
+                obj = [NSNumber new];
+            }
+            
+            
+            [self setValue:obj forKey:key];
         }
     }
     return ret;
+}
+
+-(PropertyType)propertyType:(NSString *)attribute
+{
+    NSRange range1 = [attribute rangeOfString:@"NSString"];
+    NSRange range2 = [attribute rangeOfString:@"NSMutableString"];
+    NSRange range3 = [attribute rangeOfString:@"NSArray"];
+    NSRange range4 = [attribute rangeOfString:@"NSMutableArray"];
+    NSRange range5 = [attribute rangeOfString:@"NSDictionary"];
+    NSRange range6 = [attribute rangeOfString:@"NSMutableDictionary"];
+    NSRange range7 = [attribute rangeOfString:@"NSDecimalNumber"];
+    NSRange range8  =[attribute rangeOfString:@"NSNumber"];
+    return (range8.length?8:0) | (range7.length?7:0) | (range6.length?6:0) | (range5.length?5:0) | (range4.length?4:0) | (range3.length?3:0) | (range2.length?2:0) | (range1.length?1:0);
+}
+
+-(Class)propertyClass:(NSString *)attribute
+{
+    NSString *className = [[[[attribute componentsSeparatedByString:@"T@\""] lastObject] componentsSeparatedByString:@"\""] firstObject];
+    return NSClassFromString(className);
 }
 
 - (NSArray *)getAllProperties
@@ -192,13 +261,8 @@
     return propertiesArray;
 }
 
-#pragma mark -- copying
 
--(id)copyWithZone:(NSZone *)zone
-{
-    NSObject *base = [[self class] EntityFromContainer:[self getContainer]];
-    return base;
-}
+
 
 
 #pragma mark -- coding
@@ -224,5 +288,21 @@
     return self;
 }
 
+static BOOL valied(id obj){
+    if (obj==nil) {
+        return NO;
+    }
+    if ([obj isKindOfClass:[NSObject class]])
+    {
+        if (![obj isKindOfClass:[NSNull class]])
+            if (obj!=nil) {
+                return YES;
+            }else
+                return NO;
+        else
+            return YES;
+    }
+    return YES;
+}
 
 @end
